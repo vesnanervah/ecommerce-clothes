@@ -2,7 +2,7 @@
 
 "use client";
 
-import { useReducer } from "react";
+import { ActionDispatch, useEffect, useReducer, useRef } from "react";
 import BurgerButton from "./burger-button";
 import CartButton from "./cart-button";
 import FavoriteButton from "./favorite-button";
@@ -14,11 +14,25 @@ import { disableBackDropBlur, enableBackDropBlur } from "../../common/ui/backdro
 
 enum DropdownContent { mobileMenu, search }
 
+const navElemId = "nav";
+
 export default function NavBar() {
     const [dropDownContent, dispatchDropdownContent] = useReducer(dropDownContentReducer, null)
 
+    useEffect(() => {
+        // Close dropdown and disable backdrop filter on tap outside
 
-    return <div className="w-screen overflow-hidden fixed z-10 top-0 right-0">
+        document.addEventListener("click", (e) => {
+            const nav = document.getElementById(navElemId);
+            const target = e.target as HTMLElement;
+            const clickledInsideNav = nav!.contains(target);
+            if(dropDownContent != null && target.id != navElemId && !clickledInsideNav) {
+                dispatchDropdownContent(null)
+            } 
+        })
+    });
+
+    return <nav id={navElemId} className="w-screen overflow-hidden fixed z-10 top-0 right-0">
         
         <div className={`relative top-0 left-0 z-10 h-[50px] pl-4 pr-4 flex justify-between items-center bg-white`}>
             {/* Left part */}
@@ -39,10 +53,10 @@ export default function NavBar() {
             <NavList></NavList>
         </div>
 
-    </div>
+    </nav>
 
-    function dropDownContentReducer(state: DropdownContent | null, action: DropdownContent) {
-        if (state === action) {
+    function dropDownContentReducer(state: DropdownContent | null, action: DropdownContent | null) {
+        if (state == action || action == null) {
             disableBackDropBlur()
             return null;
         }
