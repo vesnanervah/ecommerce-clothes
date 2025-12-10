@@ -1,5 +1,7 @@
+
 import type { Metadata } from "next";
 import "./globals.css";
+import { roboto } from "./lib/common/ui/fonts";
 
 
 
@@ -15,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={``}
+        className={`${roboto.className}`}
       >
         {children}
       </body>
