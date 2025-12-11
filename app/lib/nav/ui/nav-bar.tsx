@@ -11,6 +11,7 @@ import ProfileButton from "./profile-button";
 import SearchProductButton from "./search-product-button";
 import clsx from "clsx";
 import { disableBackDropBlur, enableBackDropBlur } from "../../common/ui/backdrop-blur";
+import Searchbar from "../../common/ui/searchbar";
 
 enum DropdownContent { mobileMenu, search }
 
@@ -32,7 +33,7 @@ export default function NavBar() {
         })
     });
 
-    return <nav id={navElemId} className="w-screen overflow-hidden fixed z-10 top-0 right-0">
+    return <nav id={navElemId} className="w-screen h-[50px] overflow-visible fixed z-10 top-0 right-0">
         
         <div className={`relative top-0 left-0 z-10 h-[50px] pl-4 pr-4 flex justify-between items-center bg-white`}>
             {/* Left part */}
@@ -49,10 +50,14 @@ export default function NavBar() {
         </div>
 
         {/* Mobile nav menu */}
-        <div className={clsx("relative -top-[100vh] left-0 z-9 flex flex-col items-center transition-all duration-200 md:hidden border-t border-neutral-300 bg-white pt-4 pb-4", { "top-0": dropDownContent == DropdownContent.mobileMenu})}>
+        <div className={clsx("fixed -top-full left-0 w-screen z-9 flex flex-col items-center transition-all duration-200 md:hidden border-t border-neutral-300 bg-white pt-4 pb-4", { "top-[50px]": dropDownContent == DropdownContent.mobileMenu})}>
             <NavList></NavList>
         </div>
 
+        {/* Search bar */}
+        <div className={clsx("fixed -top-full left-0 w-screen z-9 transition-all duration-200 border-neutral-300 bg-white pt-4 pb-4 pl-4 pr-4", { "top-[50px]": dropDownContent == DropdownContent.search})}>
+            <Searchbar className="w-full"></Searchbar>
+        </div>
     </nav>
 
     function dropDownContentReducer(state: DropdownContent | null, action: DropdownContent | null) {
