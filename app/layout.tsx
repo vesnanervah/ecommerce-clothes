@@ -20,7 +20,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${roboto.className}`}>
         <NavBar></NavBar>
-        {children}
+        <div className="pt-[50px]">
+          {children}
+        </div>
         <BackdropBlur></BackdropBlur>
       </body>
     </html>
