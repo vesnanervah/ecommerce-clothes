@@ -14,8 +14,8 @@ import { disableBackDropBlur, enableBackDropBlur } from "../../common/ui/backdro
 import Searchbar from "../../common/ui/searchbar";
 
 enum DropdownContent { mobileMenu, search }
-const dropdownCallers = [ "burger-btn", "search-btn" ]
-const [burgerBtnId, searchBtnId] = dropdownCallers;
+const dropdownCallers = [ "burger-btn", "search-btn", "search-bar" ]
+const [burgerBtnId, searchBtnId, searchBarId] = dropdownCallers;
 
 export default function NavBar() {
     const [dropDownContent, dispatchDropdownContent] = useReducer(dropDownContentReducer, null)
@@ -60,7 +60,7 @@ export default function NavBar() {
         </div>
 
         {/* Search bar */}
-        <div className={clsx("fixed -top-full left-0 w-screen z-9 transition-all duration-200 border-neutral-300 bg-white pt-4 pb-4 pl-4 pr-4", { "top-[50px]": dropDownContent == DropdownContent.search})}>
+        <div id={searchBarId} className={clsx("fixed -top-full left-0 w-screen z-9 transition-all duration-200 border-neutral-300 bg-white pt-4 pb-4 pl-4 pr-4", { "top-[50px]": dropDownContent == DropdownContent.search})}>
             <Searchbar className="w-full"></Searchbar>
         </div>
     </nav>
