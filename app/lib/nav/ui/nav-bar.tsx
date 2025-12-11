@@ -2,7 +2,7 @@
 
 "use client";
 
-import { ActionDispatch, useEffect, useReducer, useRef } from "react";
+import { useEffect, useReducer } from "react";
 import BurgerButton from "./burger-button";
 import CartButton from "./cart-button";
 import FavoriteButton from "./favorite-button";
@@ -14,8 +14,8 @@ import { disableBackDropBlur, enableBackDropBlur } from "../../common/ui/backdro
 import Searchbar from "../../common/ui/searchbar";
 
 enum DropdownContent { mobileMenu, search }
-
-const navElemId = "nav";
+const dropdownCallers = [ "burger-btn", "search-btn" ]
+const [burgerBtnId, searchBtnId] = dropdownCallers;
 
 export default function NavBar() {
     const [dropDownContent, dispatchDropdownContent] = useReducer(dropDownContentReducer, null)
@@ -24,25 +24,30 @@ export default function NavBar() {
         // Close dropdown and disable backdrop filter on tap outside
 
         document.addEventListener("click", (e) => {
-            const nav = document.getElementById(navElemId);
             const target = e.target as HTMLElement;
-            const clickledInsideNav = nav!.contains(target);
-            if(dropDownContent != null && target.id != navElemId && !clickledInsideNav) {
+            const clickedOnDropdownCaller = dropdownCallers.find((c) => {
+                if(target.id == c) {
+                    return c
+                }
+                const elem = document.getElementById(c);
+                return elem != null && elem.contains(target) ? c : undefined
+            }) != undefined;
+            if(dropDownContent != null && !clickedOnDropdownCaller) {
                 dispatchDropdownContent(null)
             } 
         })
     });
 
-    return <nav id={navElemId} className="w-screen h-[50px] overflow-visible fixed z-10 top-0 right-0">
+    return <nav className="w-screen h-[50px] overflow-visible fixed z-10 top-0 right-0">
         
         <div className={`relative top-0 left-0 z-10 h-[50px] pl-4 pr-4 flex justify-between items-center bg-white`}>
             {/* Left part */}
-            <BurgerButton className="md:hidden" onClick={() => dispatchDropdownContent(DropdownContent.mobileMenu)}></BurgerButton>
+            <BurgerButton id={burgerBtnId} className="md:hidden" onClick={() => dispatchDropdownContent(DropdownContent.mobileMenu)}></BurgerButton>
             <NavList className="hidden md:flex"></NavList>
     
             {/* Right part */}
             <div className="flex gap-3">
-                <SearchProductButton onClick={() => dispatchDropdownContent(DropdownContent.search)}></SearchProductButton>
+                <SearchProductButton id={searchBtnId} onClick={() => dispatchDropdownContent(DropdownContent.search)}></SearchProductButton>
                 <ProfileButton></ProfileButton>
                 <FavoriteButton></FavoriteButton>
                 <CartButton></CartButton>
