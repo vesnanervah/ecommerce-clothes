@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${roboto.className} text-neutral-800`}>
+      <body className={`${roboto.className} text-black`}>
         <NavBar></NavBar>
         {children}
         <BackdropBlur></BackdropBlur>
