@@ -10,6 +10,7 @@ const emptyFeatured: Array<Featured> = Array.from(Array(3).keys(), (v, k) => {
     }
 });
 
+// TODO: onClick
 export default function FeaturedGrid({ promisedFeatured, className = "" }: { promisedFeatured: Promise<Array<Featured>>, className?: string }) {
     const featured = use(promisedFeatured)
 

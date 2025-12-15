@@ -6,5 +6,6 @@ export default interface Product {
     price?: number | undefined,
     sizes?: Array<ProductSize> | undefined,
     imageUrls?: Array<string> | undefined,
-    desctription?: string | undefined,
+    previewUrl?: string | undefined,
+    description?: string | undefined,
 }

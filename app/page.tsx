@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Image from "next/image";
 import { BrightCustomButton } from "./lib/common/ui/custom-button";
@@ -6,10 +6,13 @@ import FullscreenBlock from "./lib/common/ui/fullscreen-section";
 import { fetchFeatured } from "./lib/product/data/featured";
 import { Suspense } from "react";
 import FeaturedGrid, { FeaturedGridSceleton } from "./lib/product/ui/featured-grid";
+import ProductsCarousel from "./lib/product/ui/products-carousel";
+import { fetchProducts } from "./lib/product/data/products";
 
 
 export default function Home() {
   const promisedFeatured = fetchFeatured({});
+  const promisedProducts = fetchProducts()
 
   return <div>
     {/* First block */}
@@ -43,5 +46,16 @@ export default function Home() {
         <FeaturedGrid promisedFeatured={promisedFeatured} className="w-full max-w-[1440px] mx-auto" />
       </Suspense>
     </div>
+
+      {/* Products carousel block */}
+
+    <div className="pt-8 pb-8">
+      <div className="text-2xl p-8">What to Wear Now</div>
+      <Suspense>
+        <ProductsCarousel promisedProducts={promisedProducts}/>
+      </Suspense>    
+    </div>  
   </div>
+
 }
+
