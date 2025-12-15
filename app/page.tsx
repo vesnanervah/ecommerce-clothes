@@ -8,11 +8,14 @@ import { Suspense } from "react";
 import FeaturedGrid, { FeaturedGridSceleton } from "./lib/product/ui/featured-grid";
 import ProductsCarousel from "./lib/product/ui/products-carousel";
 import { fetchProducts } from "./lib/product/data/products";
+import { fetchCollections } from "./lib/product/data/collections";
+import CollectionsGrid from "./lib/product/ui/collections-grid";
 
 
 export default function Home() {
   const promisedFeatured = fetchFeatured({});
   const promisedProducts = fetchProducts()
+  const promisedCollections = fetchCollections({});
 
   return <div>
     {/* First block */}
@@ -35,7 +38,6 @@ export default function Home() {
     </FullscreenBlock>
 
     {/* Featured block */}
-
     <div className="p-8">
       <div className="pb-8 text-xl">
         Elevate your lifestyle with a more intelligent, superior wardrobe. 
@@ -47,15 +49,20 @@ export default function Home() {
       </Suspense>
     </div>
 
-      {/* Products carousel block */}
-
+    {/* Products carousel block */}
     <div className="pt-8 pb-8">
       <div className="text-2xl p-8">What to Wear Now</div>
       <Suspense>
         <ProductsCarousel promisedProducts={promisedProducts}/>
       </Suspense>    
     </div>  
-  </div>
 
+    {/* Collections block */}
+    <div className="p-8">
+      <Suspense>
+        <CollectionsGrid promisedCollections={promisedCollections} className="max-w-[1440px] mx-auto"></CollectionsGrid>
+      </Suspense>
+    </div>
+  </div>
 }
 

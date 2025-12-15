@@ -45,6 +45,8 @@ const mockProductList: Array<Product> = [
     }
 ]
 
+// TODO: load from server
+
 export async function fetchProducts() {
     return new Promise<Array<Product>>(resolve => setTimeout(() => {
         resolve(mockProductList)

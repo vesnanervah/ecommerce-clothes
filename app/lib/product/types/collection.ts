@@ -1,7 +1,8 @@
 import Product from "./product";
 
 export interface Collection {
-    name: string,
-    imageUrl: string,
+    id: number,
+    name?: string | undefined,
+    imageUrl?: string | undefined,
     products?: Array<Product> | undefined,
 }
