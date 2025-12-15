@@ -1,9 +1,10 @@
 
 import type { Metadata } from "next";
 import "./globals.css";
-import { roboto } from "./lib/common/ui/fonts";
 import NavBar from "./lib/nav/ui/nav-bar";
 import BackdropBlur from "./lib/common/ui/backdrop-blur";
+import { montseratt } from "./lib/common/ui/fonts";
+import Footer from "./lib/common/ui/footer";
 
 
 
@@ -18,12 +19,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${roboto.className}`}>
-        <NavBar></NavBar>
-        <div className="pt-[50px]">
-          {children}
-        </div>
-        <BackdropBlur></BackdropBlur>
+      <body 
+      className={`${montseratt.className} text-black`}
+      >
+        <NavBar />
+        {children}
+        <Footer />
+        <BackdropBlur />
       </body>
     </html>
   );
