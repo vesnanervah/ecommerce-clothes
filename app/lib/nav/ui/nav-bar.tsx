@@ -38,30 +38,46 @@ export default function NavBar() {
         })
     });
 
-    return <nav className="w-screen h-[50px] overflow-visible fixed z-10 top-0 right-0">
+    return <nav 
+    className="w-screen h-[50px] overflow-visible fixed z-10 top-0 right-0 text-black"
+    >
         
-        <div className={`relative top-0 left-0 z-10 h-[50px] pl-4 pr-4 flex justify-between items-center bg-white`}>
+        <div 
+        className={`relative top-0 left-0 z-10 h-[50px] pl-4 pr-4 flex justify-between items-center bg-white`}
+        >
             {/* Left part */}
-            <BurgerButton id={burgerBtnId} className="md:hidden" onClick={() => dispatchDropdownContent(DropdownContent.mobileMenu)}></BurgerButton>
-            <NavList className="hidden md:flex"></NavList>
+            <BurgerButton 
+            id={burgerBtnId} 
+            className="md:hidden" 
+            onClick={() => dispatchDropdownContent(DropdownContent.mobileMenu)}
+            />
+            <NavList className="hidden md:flex" />
     
             {/* Right part */}
             <div className="flex gap-3">
-                <SearchProductButton id={searchBtnId} onClick={() => dispatchDropdownContent(DropdownContent.search)}></SearchProductButton>
-                <ProfileButton></ProfileButton>
-                <FavoriteButton></FavoriteButton>
-                <CartButton></CartButton>
+                <SearchProductButton 
+                id={searchBtnId} 
+                onClick={() => dispatchDropdownContent(DropdownContent.search)}
+                />
+                <ProfileButton />
+                <FavoriteButton />
+                <CartButton />
             </div>
         </div>
 
         {/* Mobile nav menu */}
-        <div className={clsx("fixed -top-full left-0 w-screen z-9 flex flex-col items-center transition-all duration-200 md:hidden border-t border-neutral-300 bg-white pt-4 pb-4", { "top-[50px]": dropDownContent == DropdownContent.mobileMenu})}>
-            <NavList></NavList>
+        <div 
+        className={clsx("fixed -top-full left-0 w-screen z-9 flex flex-col items-center transition-all duration-200 md:hidden border-t border-neutral-300 bg-white pt-4 pb-4", { "top-[50px]": dropDownContent == DropdownContent.mobileMenu})}
+        >
+            <NavList />
         </div>
 
         {/* Search bar */}
-        <div id={searchBarId} className={clsx("fixed -top-full left-0 w-screen z-9 transition-all duration-200 border-neutral-300 bg-white pt-4 pb-4 pl-4 pr-4", { "top-[50px]": dropDownContent == DropdownContent.search})}>
-            <Searchbar className="w-full"></Searchbar>
+        <div 
+        id={searchBarId} 
+        className={clsx("fixed -top-full left-0 w-screen z-9 transition-all duration-200 border-neutral-300 bg-white pt-4 pb-4 pl-4 pr-4", { "top-[50px]": dropDownContent == DropdownContent.search})}
+        >
+            <Searchbar className="w-full" />
         </div>
     </nav>
 

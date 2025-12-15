@@ -20,11 +20,20 @@ export default function Home() {
   return <div>
     {/* First block */}
     <FullscreenBlock>
-      <Image src={"/woman-with-bags.jpg"} fill sizes="100%" style={{objectFit: 'cover',}} alt="A photo of a woman with bags"/>
-      
-      <div className="absolute top-0 left-0 bg-black h-full w-full opacity-10 "></div>
+      <Image
+      src={"/woman-with-bags.jpg"} 
+      fill sizes="100%" 
+      style={{objectFit: 'cover',}} 
+      alt="A photo of a woman with bags"
+      />
+    
+      <div 
+      className="absolute top-0 left-0 bg-black h-full w-full opacity-10 "
+      ></div>
   
-      <div className="absolute left-8 md:left-16 bottom-16">
+      <div 
+      className="absolute left-8 md:left-16 bottom-16"
+      >
         <div className="text-2xl text-white">
           Elevate Your Style
           <br/>
@@ -44,23 +53,37 @@ export default function Home() {
         <br/>
         Our range is crafted sustainably with longevity in mind.
       </div>
-      <Suspense fallback={<FeaturedGridSceleton className="w-full max-w-[1440px] mx-auto" />}>
-        <FeaturedGrid promisedFeatured={promisedFeatured} className="w-full max-w-[1440px] mx-auto" />
+      <Suspense 
+      fallback={<FeaturedGridSceleton className="w-full max-w-[1440px] mx-auto" />}
+      >
+        <FeaturedGrid 
+        promisedFeatured={promisedFeatured} 
+        className="w-full max-w-[1440px] mx-auto" 
+        />
       </Suspense>
     </div>
 
     {/* Products carousel block */}
-    <div className="pt-8 pb-8">
-      <div className="text-2xl p-8">What to Wear Now</div>
+    <div 
+    className="pt-8 pb-8"
+    >
+      <div 
+      className="text-2xl p-8"
+      >What to Wear Now</div>
       <Suspense>
         <ProductsCarousel promisedProducts={promisedProducts}/>
       </Suspense>    
     </div>  
 
     {/* Collections block */}
-    <div className="p-8">
+    <div 
+    className="p-8"
+    >
       <Suspense>
-        <CollectionsGrid promisedCollections={promisedCollections} className="max-w-[1440px] mx-auto"></CollectionsGrid>
+        <CollectionsGrid 
+        promisedCollections={promisedCollections} 
+        className="max-w-[1440px] mx-auto"
+        ></CollectionsGrid>
       </Suspense>
     </div>
   </div>

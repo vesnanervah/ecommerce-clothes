@@ -4,6 +4,7 @@ import "./globals.css";
 import NavBar from "./lib/nav/ui/nav-bar";
 import BackdropBlur from "./lib/common/ui/backdrop-blur";
 import { montseratt } from "./lib/common/ui/fonts";
+import Footer from "./lib/common/ui/footer";
 
 
 
@@ -18,10 +19,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${montseratt.className} text-black`}>
-        <NavBar></NavBar>
+      <body 
+      className={`${montseratt.className} text-black`}
+      >
+        <NavBar />
         {children}
-        <BackdropBlur></BackdropBlur>
+        <Footer />
+        <BackdropBlur />
       </body>
     </html>
   );
