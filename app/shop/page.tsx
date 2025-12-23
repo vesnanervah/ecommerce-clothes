@@ -1,12 +1,18 @@
-import { Suspense } from "react";
-import { fetchProducts } from "../lib/product/data/products"
 import ProductsGrid from "../lib/product/ui/products-grid";
-import { fetchCategories } from "../lib/product/data/categories";
 import CategoriesFlow from "../lib/product/ui/categories-flow";
+import { Suspense } from "react";
 
-export default function Shop() {
-    const promisedProducts = fetchProducts();
-    const promisedCategories = fetchCategories()  
+export default async function Shop(props: {
+  searchParams?: Promise<{
+    query?: string;
+    page?: string;
+  }>;
+}) {
+    const searchParams = await props.searchParams; 
+    const query = new URLSearchParams(searchParams ?? "");
+    const featuredId = query.get("featured");
+    const categoryId = query.get("category");
+    const collectionId = query.get("collection")
 
     return <div>
         <div 
@@ -15,14 +21,14 @@ export default function Shop() {
             <h3 className="text-2xl">Shop</h3>
             <Suspense>
                 <CategoriesFlow
-                promisedCategories={promisedCategories}
                 />
             </Suspense>
         </div>
-
         <Suspense>
             <ProductsGrid 
-            promisedProducts={promisedProducts} 
+            featuredId={featuredId}
+            categoryId={categoryId}
+            collectionId={collectionId}
             />
         </Suspense>
     </div>

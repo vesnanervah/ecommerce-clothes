@@ -1,0 +1,5 @@
+.featured-grid-item:hover {
+    .image-overlay {
+        opacity: 0.4;
+    }
+}
