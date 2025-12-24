@@ -10,11 +10,12 @@ import ProductsCarousel from "./lib/product/ui/products-carousel";
 import { fetchProducts } from "./lib/product/data/products";
 import { fetchCollections } from "./lib/product/data/collections";
 import CollectionsGrid from "./lib/product/ui/collections-grid";
+import Link from "next/link";
 
 
 export default function Home() {
   const promisedFeatured = fetchFeatured({});
-  const promisedProducts = fetchProducts()
+  const promisedProducts = fetchProducts({})
   const promisedCollections = fetchCollections({});
 
   return <div>
@@ -42,7 +43,11 @@ export default function Home() {
           Choices
         </div>
         <div className="h-4"></div>
-        <BrightCustomButton text="Shop now"/>
+        <Link
+        href={`/shop`}
+        >
+          <BrightCustomButton text="Shop now" />
+        </Link>
       </div>
     </FullscreenBlock>
 

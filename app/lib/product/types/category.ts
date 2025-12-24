@@ -1,3 +1,5 @@
-import Product from "./product";
 
-export type Category = Array<Product>
+export interface Category {
+    id: number,
+    title?: string | undefined;
+}
