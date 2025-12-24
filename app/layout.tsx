@@ -2,9 +2,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import NavBar from "./lib/nav/ui/nav-bar";
-import BackdropBlur from "./lib/common/ui/backdrop-blur";
 import { montseratt } from "./lib/common/ui/fonts";
 import Footer from "./lib/common/ui/footer";
+import BackdropBlur from "./lib/common/ui/backdrop-blur";
 
 
 
@@ -17,15 +17,22 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const navBackdropId = "nav-backdrop-id";
+
   return (
     <html lang="en">
       <body 
       className={`${montseratt.className} text-black`}
       >
-        <NavBar />
+        <NavBar 
+        backdropId={navBackdropId} 
+        />
         {children}
         <Footer />
-        <BackdropBlur />
+        
+        <BackdropBlur 
+        id={navBackdropId}
+        />
       </body>
     </html>
   );

@@ -2,7 +2,7 @@
 
 "use client";
 
-import { useEffect, useReducer } from "react";
+import { useReducer } from "react";
 import BurgerButton from "./burger-button";
 import CartButton from "./cart-button";
 import FavoriteButton from "./favorite-button";
@@ -10,15 +10,15 @@ import NavList from "./nav-list";
 import ProfileButton from "./profile-button";
 import SearchProductButton from "./search-product-button";
 import clsx from "clsx";
-import { disableBackDropBlur, enableBackDropBlur } from "../../common/ui/backdrop-blur";
 import Searchbar from "../../common/ui/searchbar";
 import { useOnClickOutside } from "../../utils/on-click-outside";
+import { disableBackDropBlur, enableBackDropBlur } from "../../common/ui/backdrop-blur";
 
 enum DropdownContent { mobileMenu, search }
-const dropdownCallers = [ "burger-btn", "search-btn", "search-bar" ]
+const dropdownCallers = [ "burger-btn", "search-btn", "search-bar" ];
 const [burgerBtnId, searchBtnId, searchBarId] = dropdownCallers;
 
-export default function NavBar() {
+export default function NavBar({ backdropId }: { backdropId: string }) {
     const [dropDownContent, dispatchDropdownContent] = useReducer(dropDownContentReducer, null)
     const ref = useOnClickOutside(() => {
         dispatchDropdownContent(null)
@@ -31,7 +31,7 @@ export default function NavBar() {
     className="w-screen h-[50px] overflow-visible fixed z-100 top-0 right-0 text-black"
     >
         <div 
-        className={`relative top-0 left-0 z-10 h-[50px] pl-4 pr-4 flex justify-between items-center bg-white`}
+        className="relative top-0 left-0 z-10 h-[50px] pl-4 pr-4 flex justify-between items-center bg-white"
         >
             {/* Left part */}
             <BurgerButton 
@@ -71,10 +71,10 @@ export default function NavBar() {
 
     function dropDownContentReducer(state: DropdownContent | null, action: DropdownContent | null) {
         if (state == action || action == null) {
-            disableBackDropBlur()
+            disableBackDropBlur(backdropId)
             return null;
         }
-        enableBackDropBlur()
+        enableBackDropBlur(backdropId)
         return action;
     }
 }

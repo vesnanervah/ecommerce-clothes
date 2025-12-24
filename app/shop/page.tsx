@@ -1,7 +1,10 @@
 import ProductsGrid from "../lib/product/ui/products-grid";
 import CategoriesFlow from "../lib/product/ui/categories-flow";
 import { Suspense } from "react";
-import SortButton from "../lib/product/ui/sort-button";
+import DesktopSortButton from "../lib/product/ui/desktop-sort-button";
+import MobileSortButton from "../lib/product/ui/mobile-sort-button";
+import MobileSortMenu from "../lib/product/ui/mobile-sort-menu";
+import BackdropBlur from "../lib/common/ui/backdrop-blur";
 
 export default async function Shop(props: {
   searchParams?: Promise<{
@@ -9,13 +12,14 @@ export default async function Shop(props: {
     page?: string;
   }>;
 }) {
+    const mobileSortMenuBackdropId = "mobile-sort-menu-backdrop";
     const searchParams = await props.searchParams; 
     const query = new URLSearchParams(searchParams ?? "");
     const featuredId = query.get("featured");
     const categoryId = query.get("category");
-    const collectionId = query.get("collection")
+    const collectionId = query.get("collection");
 
-    return <div>
+    return <div className="relative">
         <div 
         className="pl-8 pt-20 pr-8 pb-4 border-b border-neutral-300"
         >
@@ -25,7 +29,16 @@ export default async function Shop(props: {
                     <CategoriesFlow
                     />
                 </Suspense>
-                <SortButton />
+                <div
+                className="hidden md:block"
+                >
+                    <DesktopSortButton />
+                </div>
+                <div
+                className="block md:hidden"
+                >
+                    <MobileSortButton mobileSortMenuBackdropId={mobileSortMenuBackdropId}/>
+                </div>
             </div>
         </div>
         <Suspense>
@@ -35,5 +48,8 @@ export default async function Shop(props: {
             collectionId={collectionId}
             />
         </Suspense>
+
+        <MobileSortMenu mobileSortMenuBackdropId={mobileSortMenuBackdropId}/>
+        <BackdropBlur id={mobileSortMenuBackdropId} />
     </div>
 }
