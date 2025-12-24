@@ -1,6 +1,7 @@
 import ProductsGrid from "../lib/product/ui/products-grid";
 import CategoriesFlow from "../lib/product/ui/categories-flow";
 import { Suspense } from "react";
+import SortButton from "../lib/product/ui/sort-button";
 
 export default async function Shop(props: {
   searchParams?: Promise<{
@@ -19,10 +20,13 @@ export default async function Shop(props: {
         className="pl-8 pt-20 pr-8 pb-4 border-b border-neutral-300"
         >
             <h3 className="text-2xl">Shop</h3>
-            <Suspense>
-                <CategoriesFlow
-                />
-            </Suspense>
+            <div className="flex flex-col gap-4 pt-4 md:items-center md:flex-row md:justify-between">
+                <Suspense fallback={<div></div>}>
+                    <CategoriesFlow
+                    />
+                </Suspense>
+                <SortButton />
+            </div>
         </div>
         <Suspense>
             <ProductsGrid 

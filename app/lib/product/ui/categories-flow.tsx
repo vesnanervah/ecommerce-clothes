@@ -7,7 +7,7 @@ export default async function CategoriesFlow() {
     const categories = await fetchCategories()
 
     return <div
-    className="flex flex-wrap gap-2 pt-4"
+    className="flex flex-wrap gap-2"
     >
         { categories.map(categoryToFlowItem) }
     </div>
