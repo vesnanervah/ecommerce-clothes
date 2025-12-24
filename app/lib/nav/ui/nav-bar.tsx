@@ -39,7 +39,7 @@ export default function NavBar() {
     });
 
     return <nav 
-    className="w-screen h-[50px] overflow-visible fixed z-10 top-0 right-0 text-black"
+    className="w-screen h-[50px] overflow-visible fixed z-100 top-0 right-0 text-black"
     >
         
         <div 
@@ -75,7 +75,7 @@ export default function NavBar() {
         {/* Search bar */}
         <div 
         id={searchBarId} 
-        className={clsx("fixed -top-full left-0 w-screen z-9 transition-all duration-200 border-neutral-300 bg-white pt-4 pb-4 pl-4 pr-4", { "top-[50px]": dropDownContent == DropdownContent.search})}
+        className={clsx("fixed -top-full left-0 w-screen z-9 transition-all duration-200 border-neutral-300 bg-white pt-4 pb-4 pl-4 pr-4 shadow-xl", { "top-[50px]": dropDownContent == DropdownContent.search})}
         >
             <Searchbar className="w-full" />
         </div>
