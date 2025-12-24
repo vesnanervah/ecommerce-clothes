@@ -1,9 +1,17 @@
+"use client";
+
 import clsx from "clsx";
 import { sortOptions } from "../data/sort-options";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-export default function SortMenu({ className = '', selectedSortOption, onOptionClick }: { 
-    className?: string, selectedSortOption?: SortOption | undefined, onOptionClick: (option: SortOption) => void
-}) {
+export default function SortMenu({ className = '', onChange}: { className?: string, onChange: () => void }) {
+    const router = useRouter();
+    const pathName = usePathname();
+    const query = useSearchParams();
+    const sortQueryParameter = parseInt(query.get("sort") ?? '');
+    const selectedSortOption = isNaN(sortQueryParameter) ? undefined : sortOptions.find((option) => option.id === sortQueryParameter);
+        
+
     return <div
     className={`flex flex-col gap-6 p-4 bg-white items-center ${className}`}
     >
@@ -11,7 +19,6 @@ export default function SortMenu({ className = '', selectedSortOption, onOptionC
     </div>
 
     function sortOptionToElement(option: SortOption) {
-
         return <button
         key={option.id}
         onClick={() => onOptionClick(option)}
@@ -19,6 +26,15 @@ export default function SortMenu({ className = '', selectedSortOption, onOptionC
         >
             {option.label}
         </button>
+    }
+
+    function onOptionClick(option: SortOption) {
+        if(option.id != selectedSortOption?.id) {
+            const params = new URLSearchParams(query.toString());
+            params.set("sort", option.id.toString());
+            router.push(`${pathName}?${params.toString()}`);
+            onChange()
+        }
     }
 
 }
