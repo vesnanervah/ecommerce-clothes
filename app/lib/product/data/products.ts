@@ -1,11 +1,15 @@
 import Product from "../types/product";
+import { ProductSize } from "../types/product-size";
 
 const mockProductList: Array<Product> = [
     {
         id: 0,
         name: "Walnut Winter Boots",
         price: 149,
-        previewUrl: "/boots.jpg"
+        sizes: [ProductSize.m, ProductSize.xl],
+        previewUrl: "/boots.jpg",
+        imageUrls: ["/boots.jpg", "/dress.png", "/jeans.jpg"],
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
     },
     {
         id: 1,
@@ -56,4 +60,15 @@ export function fetchProducts(args: FetchProductsArgs) {
     return new Promise<Array<Product>>(resolve => setTimeout(() => {
         resolve(mockProductList)
     }, 2000))
+}
+
+
+interface FetchProductDetailsArgs {
+    id: string
+}
+
+export function fethProductDetails(args: FetchProductDetailsArgs) {
+    return new Promise<Product | null>(resolve => setTimeout(() => {
+        resolve(mockProductList[0])
+    }, 1000)) 
 }
