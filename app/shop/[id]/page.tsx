@@ -1,10 +1,12 @@
 import { fethProductDetails } from "@/app/lib/product/data/products";
 import ProductImagesSlider from "@/app/lib/product/ui/product-images-slider";
+import ProductSizesFlow from "@/app/lib/product/ui/product-sizes-flow";
 
-export default async function Page(props: { params: Promise<{ id: string }> }) {
+export default async function Page(props: { params: Promise<{ id: string }>, searchParams: Promise<{ size?: string }> }) {
     const params = await props.params;
-    const product = await fethProductDetails({id: params.id})
-    const urls = product?.imageUrls ?? ["/placeholder.jpg"]
+    const searchParams = await props.searchParams;
+    const product = await fethProductDetails({id: params.id});
+    const urls = product?.imageUrls ?? ["/placeholder.jpg"];
     if(!product) {
         // TODO: placeholder
         return <div>
@@ -37,6 +39,14 @@ export default async function Page(props: { params: Promise<{ id: string }> }) {
             </div>
             <div>
                 {product.description ?? "Description"}
+            </div>
+            <div
+            className="pt-4 pb-4"
+            >
+                <ProductSizesFlow 
+                sizes={product!.sizes!}
+                selectedSize={searchParams.size}
+            />
             </div>
         </div>
     </div>
