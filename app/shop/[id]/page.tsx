@@ -1,4 +1,5 @@
 import { fethProductDetails } from "@/app/lib/product/data/products";
+import AddProductToCartButton from "@/app/lib/product/ui/add-product-to-cart-button";
 import ProductImagesSlider from "@/app/lib/product/ui/product-images-slider";
 import ProductSizesFlow from "@/app/lib/product/ui/product-sizes-flow";
 
@@ -26,28 +27,30 @@ export default async function Page(props: { params: Promise<{ id: string }>, sea
                 />
             </div>
         </div>
-        <div>
-            <h3
-            className="text-xl pb-1"
-            >
-                {product.name ?? "Product title"}
-            </h3>
+        <div
+        className="flex flex-col gap-4 pl-4 pr-4 md:pl-0 nmd:pr-0"
+        >
             <div
-            className="pb-2"
             >
+                <h3
+                className="text-xl"
+                >
+                {product.name ?? "Product title"}
+                </h3>
                 ${product.price ?? 0}
             </div>
             <div>
                 {product.description ?? "Description"}
             </div>
             <div
-            className="pt-4 pb-4"
             >
                 <ProductSizesFlow 
                 sizes={product!.sizes!}
                 selectedSize={searchParams.size}
             />
             </div>
+            
+            <AddProductToCartButton productId={product.id} />
         </div>
     </div>
 }
