@@ -1,3 +1,4 @@
+import promiseDelayed from "../../utils/promise-delayed";
 import { Category } from "../types/category";
 
 const categories: Array<Category> = [
@@ -24,5 +25,5 @@ const categories: Array<Category> = [
 ]
 
 export async function fetchCategories() {
-    return new Promise<Array<Category>>(resolve => setTimeout(() => { resolve(categories) }, 1000))
+    return promiseDelayed(categories)
 }

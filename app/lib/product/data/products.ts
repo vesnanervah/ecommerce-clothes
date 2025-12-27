@@ -1,3 +1,4 @@
+import promiseDelayed from "../../utils/promise-delayed";
 import Product from "../types/product";
 
 const mockProductList: Array<Product> = [
@@ -56,9 +57,7 @@ interface FetchProductsArgs {
 }
 
 export function fetchProducts(args: FetchProductsArgs) {
-    return new Promise<Array<Product>>(resolve => setTimeout(() => {
-        resolve(mockProductList)
-    }, 2000))
+    return promiseDelayed(mockProductList, 2000)
 }
 
 
@@ -67,7 +66,5 @@ interface FetchProductDetailsArgs {
 }
 
 export function fethProductDetails(args: FetchProductDetailsArgs) {
-    return new Promise<Product | null>(resolve => setTimeout(() => {
-        resolve(mockProductList[0])
-    }, 1000)) 
+    return promiseDelayed<Product | null>(mockProductList[0]);
 }

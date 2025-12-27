@@ -1,5 +1,6 @@
 // TODO: move to server
 
+import promiseDelayed from "../../utils/promise-delayed";
 import { Featured } from "../types/featured"
 
 const featured: Array<Featured> = [
@@ -21,5 +22,5 @@ const featured: Array<Featured> = [
 ]
 
 export function fetchFeatured({ limit }: { limit?: number | undefined}) {
-    return new Promise<Array<Featured>>( resolve => setTimeout(() => resolve(featured), 3000))
+    return promiseDelayed(featured, 3000);
 }
