@@ -2,13 +2,14 @@
 
 import clsx from "clsx";
 import { useSwiper } from "swiper/react";
+import { generateArray } from "../../utils/generate-array";
 
 export default function ProductImagesSliderControls({ len, activeIndex }: { len: number, activeIndex: number }) {
     const swiper = useSwiper()
-    const indexes = Array.from({ length: len}).map((v, i) => {
+    const indexes = generateArray(len, (i) => {
         return i == activeIndex
     });
-
+    
     return <div
     className="flex justify-center gap-2"
     >
