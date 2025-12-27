@@ -1,16 +1,12 @@
-"use client";
-
 import "swiper/swiper.css"
 import { Swiper, SwiperSlide } from "swiper/react";
 import Product from "../types/product";
 import ProductCarouselControlButton from "./product-carousel-control-btn";
 import { use } from "react";
 import ProductGridItem from "./product-grid-item";
-import { useRouter } from "next/navigation";
 
 export default function ProductsCarousel({ promisedProducts }: { promisedProducts: Promise<Array<Product>> }  ) {
   const products = use(promisedProducts)
-  const router = useRouter();
 
   return <Swiper 
   spaceBetween={20} 
@@ -45,7 +41,6 @@ export default function ProductsCarousel({ promisedProducts }: { promisedProduct
   
   function productToSlide(product: Product) {
     return <SwiperSlide
-    onClick={() => router.push(`/shop/${product.id}`)}
     key={product.id}
     >
       <ProductGridItem product={product}/>
