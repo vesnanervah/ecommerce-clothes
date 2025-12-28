@@ -1,5 +1,3 @@
-"use client";
-
 import "swiper/swiper.css"
 import { Swiper, SwiperSlide } from "swiper/react";
 import Product from "../types/product";
@@ -34,15 +32,17 @@ export default function ProductsCarousel({ promisedProducts }: { promisedProduct
       products.map(productToSlide)
     }
     <div
-    className="absolute flex justify-between items-center h-full w-full top-0 left-0 z-10"
+    className="absolute flex justify-between items-center h-full w-full top-0 left-0"
     >
-      <ProductCarouselControlButton className="" direction="left" />
-      <ProductCarouselControlButton className="" direction="right" />
+      <ProductCarouselControlButton className="relative z-10" direction="left" />
+      <ProductCarouselControlButton className="relative z-10" direction="right" />
     </div>
   </Swiper>
   
   function productToSlide(product: Product) {
-    return <SwiperSlide key={product.id}>
+    return <SwiperSlide
+    key={product.id}
+    >
       <ProductGridItem product={product}/>
     </SwiperSlide>
   }

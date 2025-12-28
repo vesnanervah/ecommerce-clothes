@@ -20,7 +20,7 @@ export default function Home() {
 
   return <div>
     {/* First block */}
-    <FullscreenBlock>
+    <FullscreenBlock className="relative">
       <Image
       src={"/woman-with-bags.jpg"} 
       fill sizes="100%" 

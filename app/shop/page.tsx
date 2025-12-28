@@ -21,7 +21,7 @@ export default async function Shop(props: {
 
     return <div className="relative">
         <div 
-        className="pl-8 pt-20 pr-8 pb-4 border-b border-neutral-300"
+        className="pl-8 pt-8 pr-8 pb-4 border-b border-neutral-300"
         >
             <h3 className="text-2xl">Shop</h3>
             <div className="flex flex-col gap-4 pt-4 md:items-center md:flex-row md:justify-between">

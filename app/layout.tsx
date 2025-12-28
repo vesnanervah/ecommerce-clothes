@@ -27,7 +27,12 @@ export default function RootLayout({
         <NavBar 
         backdropId={navBackdropId} 
         />
+        <div
+        className="pt-[50px]"
+        >
         {children}
+
+        </div>
         <Footer />
         
         <BackdropBlur 
