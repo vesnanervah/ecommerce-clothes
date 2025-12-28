@@ -1,7 +1,6 @@
 "use client";
 
 import clsx from "clsx";
-import { use } from "react";
 import { generateArray } from "../../utils/generate-array";
 
 export default function ReviewsPag({ active, total, onClick }: { active: number, total: number, onClick: (value: number) => void }) {

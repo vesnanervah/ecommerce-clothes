@@ -72,7 +72,7 @@ interface FetchReviewArgs {
 
 export async function fetchReviews(args: FetchReviewArgs): Promise<ReviewsResponse> {
     const sliceConstant = 4;
-    const sliceStart = args.page * sliceConstant - 1;
+    const sliceStart = args.page == 1 ? 0 : ( (args.page - 1) * sliceConstant);
     const slice = mockReviews.slice(sliceStart, sliceStart + sliceConstant);
     const resp: ReviewsResponse = {
         page: args.page,
