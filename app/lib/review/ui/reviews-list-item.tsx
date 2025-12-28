@@ -6,7 +6,7 @@ export default function ReviewsListItem({ review }: { review: Review }) {
     const date = review.date ? format(review.date, "dd/MM/yy") : "";
 
     return <div
-    className="flex flex-col md:flex-row gap-4 border-b border-neutral-400 p-4 italic"
+    className="flex flex-col md:flex-row gap-4 border-b border-neutral-400 pb-4 pt-4 italic"
     >
         <div
         className="w-72"
