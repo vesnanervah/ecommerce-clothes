@@ -5,6 +5,8 @@ import NavBar from "./lib/nav/ui/nav-bar";
 import { montseratt } from "./lib/common/ui/fonts";
 import Footer from "./lib/common/ui/footer";
 import BackdropBlur from "./lib/common/ui/backdrop-blur";
+import { Provider } from "react-redux";
+import { store as appStore } from "./lib/state/store";
 
 
 
@@ -21,24 +23,28 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body 
-      className={`${montseratt.className} text-black`}
+      <Provider
+      store={appStore}
       >
-        <NavBar 
-        backdropId={navBackdropId} 
-        />
-        <div
-        className="pt-[50px]"
+        <body 
+        className={`${montseratt.className} text-black`}
         >
-        {children}
+          <NavBar 
+          backdropId={navBackdropId} 
+          />
+          <div
+          className="pt-[50px]"
+          >
+          {children}
 
-        </div>
-        <Footer />
-        
-        <BackdropBlur 
-        id={navBackdropId}
-        />
-      </body>
+          </div>
+          <Footer />
+
+          <BackdropBlur 
+          id={navBackdropId}
+          />
+        </body>
+      </Provider>
     </html>
   );
 }
