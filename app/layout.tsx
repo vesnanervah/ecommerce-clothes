@@ -23,28 +23,22 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <Provider
-      store={appStore}
+      <body 
+      className={`${montseratt.className} text-black`}
       >
-        <body 
-        className={`${montseratt.className} text-black`}
+        <NavBar 
+        backdropId={navBackdropId} 
+        />
+        <div
+        className="pt-[50px]"
         >
-          <NavBar 
-          backdropId={navBackdropId} 
-          />
-          <div
-          className="pt-[50px]"
-          >
-          {children}
-
-          </div>
-          <Footer />
-
-          <BackdropBlur 
-          id={navBackdropId}
-          />
-        </body>
-      </Provider>
+        {children}
+        </div>
+        <Footer />
+        <BackdropBlur 
+        id={navBackdropId}
+        />
+      </body>
     </html>
   );
 }

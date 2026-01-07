@@ -2,18 +2,34 @@ import { createSlice } from "@reduxjs/toolkit";
 import CartItem from "../types/cart-item";
 import Product from "../../product/types/product";
 
+export interface CartStateItem {
+    [id: number]: CartItem | undefined
+}
+
 export interface CartState {
-    items: Map<number, CartItem>,
-    getItemById: (id: number) => CartItem | undefined,
+    items: CartStateItem
 }
 
 const initialCartState: CartState = {
-    items: new Map<number, CartItem>(),
-    getItemById: function (id) {
-        return this.items.get(id);
+    items: {},
+}
+
+export function getCartItemById(state: CartState, id: number) {
+    return state.items[id];
+};
+export function setCartItemItem(state: CartState, id: number, value: CartItem | undefined | null) {
+    if (value) {
+        state.items[id] = value;
+    } else {
+        delete state.items[id];
     }
 }
 
+export function getTotalCartLen(state: CartState) {
+    return Object.keys(state.items).map((k) => state.items[parseInt(k)]!.quantity).reduce((acc, current) => {
+        return acc + current
+    }, 0);
+}
 
 export const cartSlice = createSlice({
     name: "cart",
@@ -22,25 +38,19 @@ export const cartSlice = createSlice({
         add: (state, action) => {
             const actionProduct = action.payload.product as Product | undefined;
             if(!actionProduct) return;
-
-            const found = state.getItemById(actionProduct.id);
-            if (found) {
-                state.items.set(actionProduct.id, { ...found, quantity: found.quantity + 1 }) 
-            } else {
-                state.items.set(actionProduct.id, { quantity: 1, product: actionProduct })
-            }
+            const found = getCartItemById(state, actionProduct.id);
+            const result = found ? { ...found, quantity: found.quantity + 1 } : { quantity: 1, product: actionProduct }
+            setCartItemItem(state, actionProduct.id, result) 
         },
         remove: (state, action) => {
             const actionProduct = action.payload.product as Product | undefined;
             if(!actionProduct) return;
-            const found = state.getItemById(actionProduct.id);
+            const found = getCartItemById(state, actionProduct.id);
             if(!found) return;
 
-            if (found.quantity > 1) {
-                state.items.set(actionProduct.id, { ...found, quantity: found.quantity - 1 })
-            } else {
-                state.items.delete(actionProduct.id)
-            }
+            const result = found.quantity > 1 ? { ...found, quantity: found.quantity - 1 } : null;
+            setCartItemItem(state, actionProduct.id, result)
+
         } 
     }
-})
+});

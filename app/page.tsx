@@ -11,6 +11,7 @@ import { fetchProducts } from "./lib/product/data/products";
 import { fetchCollections } from "./lib/product/data/collections";
 import CollectionsGrid from "./lib/product/ui/collections-grid";
 import Link from "next/link";
+import { ReduxProvider } from "./lib/state/view/redux-provider";
 
 
 export default function Home() {
@@ -76,7 +77,9 @@ export default function Home() {
       className="text-2xl p-8"
       >What to Wear Now</div>
       <Suspense>
-        <ProductsCarousel promisedProducts={promisedProducts}/>
+        <ReduxProvider>
+          <ProductsCarousel promisedProducts={promisedProducts}/>
+        </ReduxProvider>
       </Suspense>    
     </div>  
 
