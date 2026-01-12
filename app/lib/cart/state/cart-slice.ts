@@ -42,7 +42,7 @@ export const cartSlice = createSlice({
             const result = found ? { ...found, quantity: found.quantity + 1 } : { quantity: 1, product: actionProduct }
             setCartItemItem(state, actionProduct.id, result) 
         },
-        remove: (state, action) => {
+        decrease: (state, action) => {
             const actionProduct = action.payload.product as Product | undefined;
             if(!actionProduct) return;
             const found = getCartItemById(state, actionProduct.id);
