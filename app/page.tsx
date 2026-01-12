@@ -5,11 +5,11 @@ import { BrightCustomButton } from "./lib/common/ui/custom-button";
 import FullscreenBlock from "./lib/common/ui/fullscreen-section";
 import { fetchFeatured } from "./lib/product/data/featured";
 import { Suspense } from "react";
-import FeaturedGrid, { FeaturedGridSceleton } from "./lib/product/ui/featured-grid";
+import FeaturedGrid, { FeaturedGridSceleton } from "./lib/featured/view/featured-grid";
 import ProductsCarousel from "./lib/product/ui/products-carousel";
 import { fetchProducts } from "./lib/product/data/products";
 import { fetchCollections } from "./lib/product/data/collections";
-import CollectionsGrid from "./lib/product/ui/collections-grid";
+import CollectionsGrid from "./lib/collection/view/collections-grid";
 import Link from "next/link";
 import { ReduxProvider } from "./lib/state/view/redux-provider";
 

@@ -20,7 +20,7 @@ export default function CartItemControls({
         <span
         className="w-8 text-center"
         >
-            {quantity > 99 ? "99+" : quantity}
+            {quantity > 99 ? "99+" : quantity }
         </span>
         <button
         className="p-2 text-xl"

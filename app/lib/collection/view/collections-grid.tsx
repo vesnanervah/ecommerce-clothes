@@ -1,5 +1,5 @@
 import { use } from "react";
-import { Collection } from "../types/collection";
+import { Collection } from "../../product/types/collection";
 import CollectionsGridItem from "./collections-grid-item";
 
 export default function CollectionsGrid({ promisedCollections, className = "" }: { promisedCollections: Promise<Array<Collection>>, className?: string }) {

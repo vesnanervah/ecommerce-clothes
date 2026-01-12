@@ -1,7 +1,7 @@
 import './featured-grid-item.css';
 
 import Image from "next/image";
-import { Featured } from "../types/featured";
+import { Featured } from "../../product/types/featured";
 import Link from "next/link";
 
 export default function FeaturedGridItem({ featured, className = ""}: { featured: Featured, className?: string }) {
