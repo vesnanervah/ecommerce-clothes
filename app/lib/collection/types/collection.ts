@@ -1,4 +1,4 @@
-import Product from "./product";
+import Product from "../../product/types/product";
 
 export interface Collection {
     id: number,

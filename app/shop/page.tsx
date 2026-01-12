@@ -1,11 +1,11 @@
 import ProductsGrid from "../lib/product/ui/products-grid";
-import CategoriesFlow from "../lib/product/ui/categories-flow";
 import { Suspense } from "react";
 import DesktopSortButton from "../lib/product/ui/desktop-sort-button";
 import MobileSortButton from "../lib/product/ui/mobile-sort-button";
 import MobileSortMenu from "../lib/product/ui/mobile-sort-menu";
 import BackdropBlur from "../lib/common/ui/backdrop-blur";
 import { fetchProducts } from "../lib/product/data/products";
+import CategoriesFlow from "../lib/category/view/categories-flow";
 
 export default async function Shop(props: {
   searchParams?: Promise<{

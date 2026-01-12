@@ -1,8 +1,8 @@
 "use client";
 
 import { use } from "react";
-import { Featured } from "../../product/types/featured";
 import FeaturedGridItem from "./featured-grid-item";
+import { Featured } from "../types/featured";
 
 const emptyFeatured: Array<Featured> = Array.from(Array(3).keys(), (v, k) => {
     return {

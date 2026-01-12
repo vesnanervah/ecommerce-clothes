@@ -3,7 +3,7 @@
 import clsx from "clsx";
 import { usePathname, useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { Category } from "../../product/types/category";
+import { Category } from "../types/category";
 
 export default function CategoriesFlowItem({ category}: { category: Category}) {
     const path = usePathname();
