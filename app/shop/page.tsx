@@ -1,10 +1,11 @@
 import ProductsGrid from "../lib/product/ui/products-grid";
-import CategoriesFlow from "../lib/product/ui/categories-flow";
 import { Suspense } from "react";
 import DesktopSortButton from "../lib/product/ui/desktop-sort-button";
 import MobileSortButton from "../lib/product/ui/mobile-sort-button";
 import MobileSortMenu from "../lib/product/ui/mobile-sort-menu";
 import BackdropBlur from "../lib/common/ui/backdrop-blur";
+import { fetchProducts } from "../lib/product/data/products";
+import CategoriesFlow from "../lib/category/view/categories-flow";
 
 export default async function Shop(props: {
   searchParams?: Promise<{
@@ -18,6 +19,7 @@ export default async function Shop(props: {
     const featuredId = query.get("featured");
     const categoryId = query.get("category");
     const collectionId = query.get("collection");
+    const promisedProducts = fetchProducts({ featured: featuredId, category: categoryId, collection: collectionId, })
 
     return <div className="relative">
         <div 
@@ -41,11 +43,11 @@ export default async function Shop(props: {
                 </div>
             </div>
         </div>
-        <Suspense>
-            <ProductsGrid 
-            featuredId={featuredId}
-            categoryId={categoryId}
-            collectionId={collectionId}
+        <Suspense
+        fallback={<div className="p-8">Fetching products...</div>}
+        >
+            <ProductsGrid
+            promisedProducts={promisedProducts}
             />
         </Suspense>
 

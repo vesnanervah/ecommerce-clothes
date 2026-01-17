@@ -1,8 +1,8 @@
 "use client";
 
 import { use } from "react";
-import { Featured } from "../types/featured";
 import FeaturedGridItem from "./featured-grid-item";
+import { Featured } from "../types/featured";
 
 const emptyFeatured: Array<Featured> = Array.from(Array(3).keys(), (v, k) => {
     return {
@@ -10,7 +10,6 @@ const emptyFeatured: Array<Featured> = Array.from(Array(3).keys(), (v, k) => {
     }
 });
 
-// TODO: onClick
 export default function FeaturedGrid({ promisedFeatured, className = "" }: { promisedFeatured: Promise<Array<Featured>>, className?: string }) {
     const featured = use(promisedFeatured)
 

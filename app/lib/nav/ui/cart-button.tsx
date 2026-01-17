@@ -1,9 +1,16 @@
 import Image from "next/image";
+import { useSelector } from "react-redux";
+import { cartItemsCountSelector } from "../../cart/state/selectors";
+import Link from "next/link";
 
 export default function CartButton() {
-    return <button className="flex text-xs items-center">
+    const count = useSelector(cartItemsCountSelector());
+
+    return <Link 
+    href={"/cart"}
+    className="flex text-xs items-center"
+    >
         <Image height={14} width={14} src="/cart.svg" alt="Cart button"></Image>
-        {/* Todo: cart logic */}
-        <span>0</span>
-    </button>
+        <span>{count}</span>
+    </Link>
 }

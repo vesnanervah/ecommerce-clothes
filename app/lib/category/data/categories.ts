@@ -1,5 +1,5 @@
 import promiseDelayed from "../../utils/promise-delayed";
-import { Category } from "../types/category";
+import { Category } from "../../category/types/category";
 
 const categories: Array<Category> = [
     {

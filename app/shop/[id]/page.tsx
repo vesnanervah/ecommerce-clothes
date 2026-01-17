@@ -52,7 +52,7 @@ export default async function Page(props: { params: Promise<{ id: string }>, sea
                 />
                 </div>
 
-                <AddProductToCartButton productId={product.id} />
+                <AddProductToCartButton product={product} />
             </div>
         </div>
         <div

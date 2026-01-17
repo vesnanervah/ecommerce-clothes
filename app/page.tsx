@@ -3,14 +3,15 @@
 import Image from "next/image";
 import { BrightCustomButton } from "./lib/common/ui/custom-button";
 import FullscreenBlock from "./lib/common/ui/fullscreen-section";
-import { fetchFeatured } from "./lib/product/data/featured";
+import { fetchFeatured } from "./lib/featured/data/featured";
 import { Suspense } from "react";
-import FeaturedGrid, { FeaturedGridSceleton } from "./lib/product/ui/featured-grid";
+import FeaturedGrid, { FeaturedGridSceleton } from "./lib/featured/view/featured-grid";
 import ProductsCarousel from "./lib/product/ui/products-carousel";
 import { fetchProducts } from "./lib/product/data/products";
-import { fetchCollections } from "./lib/product/data/collections";
-import CollectionsGrid from "./lib/product/ui/collections-grid";
+import { fetchCollections } from "./lib/collection/data/collections";
+import CollectionsGrid from "./lib/collection/view/collections-grid";
 import Link from "next/link";
+import { ReduxProvider } from "./lib/state/view/redux-provider";
 
 
 export default function Home() {
@@ -23,7 +24,8 @@ export default function Home() {
     <FullscreenBlock className="relative">
       <Image
       src={"/woman-with-bags.jpg"} 
-      fill sizes="100%" 
+      fill 
+      sizes="100%" 
       style={{objectFit: 'cover',}} 
       alt="A photo of a woman with bags"
       />
@@ -76,7 +78,9 @@ export default function Home() {
       className="text-2xl p-8"
       >What to Wear Now</div>
       <Suspense>
-        <ProductsCarousel promisedProducts={promisedProducts}/>
+        <ReduxProvider>
+          <ProductsCarousel promisedProducts={promisedProducts}/>
+        </ReduxProvider>
       </Suspense>    
     </div>  
 

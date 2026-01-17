@@ -1,19 +1,19 @@
-import { fetchProducts } from "../data/products";
+"use client";
+
+import { use } from "react";
 import Product from "../types/product";
 import ProductGridItem from "./product-grid-item";
+import { ReduxProvider } from "../../state/view/redux-provider";
 
-export default async function ProductsGrid({featuredId, categoryId, collectionId, className = "" }: {featuredId?: string | null | undefined, categoryId?: string | null | undefined, collectionId?: string | null | undefined, className?: string }) {
-    const products = await fetchProducts({
-        featured: featuredId, 
-        category:categoryId, 
-        collection: collectionId
-    });
-
-    return <div
-    className={`p-8 grid grid-cols-2 gap-4 gap-y-6 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 w-full max-w-[1440px] mx-auto ${className}`}
-    >
-        { products.map(productToGridItem) }
-    </div>
+export default function ProductsGrid({ promisedProducts, className = "" }: { promisedProducts: Promise<Array<Product>>, className?: string }) {
+    const products = use(promisedProducts);
+    return <ReduxProvider>
+        <div
+        className={`p-8 grid grid-cols-2 gap-4 gap-y-6 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 w-full max-w-[1440px] mx-auto ${className}`}
+        >
+            { products.map(productToGridItem) }
+        </div>
+    </ReduxProvider>
 
     function productToGridItem(product: Product) {
         return <ProductGridItem product={product} key={product.id} />

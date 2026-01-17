@@ -1,9 +1,9 @@
 "use client";
 
 import clsx from "clsx";
-import { Category } from "../types/category";
 import { usePathname, useSearchParams } from "next/navigation";
 import Link from "next/link";
+import { Category } from "../types/category";
 
 export default function CategoriesFlowItem({ category}: { category: Category}) {
     const path = usePathname();

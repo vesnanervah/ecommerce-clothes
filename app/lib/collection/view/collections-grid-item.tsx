@@ -1,7 +1,7 @@
 import './collections-grid-item.css';
 
 import Image from "next/image";
-import { Collection } from "../types/collection";
+import { Collection } from "../../product/types/collection";
 import Link from 'next/link';
 
 export default function CollectionsGridItem({ collection, className = "" }: { collection: Collection, className?: string}) {

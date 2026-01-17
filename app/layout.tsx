@@ -5,6 +5,8 @@ import NavBar from "./lib/nav/ui/nav-bar";
 import { montseratt } from "./lib/common/ui/fonts";
 import Footer from "./lib/common/ui/footer";
 import BackdropBlur from "./lib/common/ui/backdrop-blur";
+import { Provider } from "react-redux";
+import { store as appStore } from "./lib/state/store";
 
 
 
@@ -31,10 +33,8 @@ export default function RootLayout({
         className="pt-[50px]"
         >
         {children}
-
         </div>
         <Footer />
-        
         <BackdropBlur 
         id={navBackdropId}
         />

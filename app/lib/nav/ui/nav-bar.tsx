@@ -13,6 +13,7 @@ import clsx from "clsx";
 import Searchbar from "../../common/ui/searchbar";
 import { useOnClickOutside } from "../../utils/on-click-outside";
 import { disableBackDropBlur, enableBackDropBlur } from "../../common/ui/backdrop-blur";
+import { ReduxProvider } from "../../state/view/redux-provider";
 
 enum DropdownContent { mobileMenu, search }
 const dropdownCallers = [ "burger-btn", "search-btn", "search-bar" ];
@@ -23,8 +24,6 @@ export default function NavBar({ backdropId }: { backdropId: string }) {
     const ref = useOnClickOutside(() => {
         dispatchDropdownContent(null)
     })
-
-
 
     return <nav
     ref={ref}
@@ -49,7 +48,9 @@ export default function NavBar({ backdropId }: { backdropId: string }) {
                 />
                 <ProfileButton />
                 <FavoriteButton />
-                <CartButton />
+                <ReduxProvider>
+                    <CartButton />
+                </ReduxProvider>
             </div>
         </div>
 
