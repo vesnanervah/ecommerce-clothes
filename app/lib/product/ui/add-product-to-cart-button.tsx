@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { DarkCustomButton } from "../../common/ui/custom-button";
 import { ReduxProvider } from "../../state/view/redux-provider";
 import Product from "../types/product";
-import { cartItemSelector } from "../../state/selectors";
+import { cartItemSelector } from "../../cart/state/selectors";
 import CartItemControls from "../../cart/view/cart-item-controls";
 import { cartSlice } from "../../cart/state/cart-slice";
 
@@ -28,6 +28,7 @@ function AddToCartButtonOrCartControls({ product }: { product: Product }) {
             onIncrease={() => dispatch(cartSlice.actions.add({ product }))}
             onDecrease={() => dispatch(cartSlice.actions.decrease({ product }))}
             quantity={item.quantity}
+            innerButtonsClassName="p-2"
             />
         </div>
 

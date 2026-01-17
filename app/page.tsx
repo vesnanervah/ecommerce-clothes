@@ -24,7 +24,8 @@ export default function Home() {
     <FullscreenBlock className="relative">
       <Image
       src={"/woman-with-bags.jpg"} 
-      fill sizes="100%" 
+      fill 
+      sizes="100%" 
       style={{objectFit: 'cover',}} 
       alt="A photo of a woman with bags"
       />

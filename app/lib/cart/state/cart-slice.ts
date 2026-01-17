@@ -2,12 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 import CartItem from "../types/cart-item";
 import Product from "../../product/types/product";
 
-export interface CartStateItem {
+export interface CartStateItems {
     [id: number]: CartItem | undefined
 }
 
 export interface CartState {
-    items: CartStateItem
+    items: CartStateItems
 }
 
 const initialCartState: CartState = {
@@ -51,6 +51,13 @@ export const cartSlice = createSlice({
             const result = found.quantity > 1 ? { ...found, quantity: found.quantity - 1 } : null;
             setCartItemItem(state, actionProduct.id, result)
 
-        } 
+        },
+        remove: (state, action) => {
+            const actionProduct = action.payload.product as Product | undefined;
+            if(!actionProduct) return;
+            const found = getCartItemById(state, actionProduct.id);
+            if(!found) return;
+            setCartItemItem(state, actionProduct.id, null);
+        }
     }
 });

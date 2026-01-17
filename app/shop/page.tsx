@@ -44,7 +44,7 @@ export default async function Shop(props: {
             </div>
         </div>
         <Suspense
-        fallback={<div>Fetching products...</div>}
+        fallback={<div className="p-8">Fetching products...</div>}
         >
             <ProductsGrid
             promisedProducts={promisedProducts}

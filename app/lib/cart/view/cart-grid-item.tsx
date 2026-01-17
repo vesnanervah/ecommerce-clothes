@@ -8,49 +8,55 @@ export default function CartGridItem({ item }: { item:CartItem }) {
     const dispath = useDispatch();
 
     return <div
-    className="relative p-2"   
+    className="w-full max-w-[360px] relative p-4 border border-neutral-200"   
     >
-        <div
-        className="absolute top-1 right-1"
+        <button
+        className="absolute top-0 right-2 text-neutral-400"
+        onClick={remove}
         >
             x
-        </div>
+        </button>
         <div
-        className="text-xl pb-8"
+        className="text-xl pb-4 text-center"
         >
             {item.product.name}
         </div>
         <div 
-        className="flex items-center"
+        className="h-[280px] overflow-hidden w-full flex justify-center items-center"
         >
             <Image
             src={item.product.previewUrl!}
-            width={320}
-            height={320}
             alt="Photo of product"
+            width={240}
+            height={280}
+            style={{objectFit: 'cover',}} 
             />
 
         </div>
         <div
-        className="flex justify-between"
+        className="flex justify-between pt-4 items-center"
         >
-            <div>
-                {(item.product.price ?? 0) * item.quantity}
-            </div>
             <CartItemControls 
             onDecrease={decrease}
             onIncrease={increase}
             quantity={item.quantity}
+            innerButtonsClassName="p-1"
             />
-                
+            <div>
+                ${(item.product.price ?? 0) * item.quantity}
+            </div> 
         </div>
     </div>
 
     function decrease() {
-        dispath(cartSlice.actions.add({ product: item.product }))
+        dispath(cartSlice.actions.decrease({ product: item.product }))
     }
 
     function increase() {
-        dispath(cartSlice.actions.decrease({ product: item.product }))
+        dispath(cartSlice.actions.add({ product: item.product }))
+    }
+
+    function remove() {
+        dispath(cartSlice.actions.remove({ product: item.product }));
     }
 }
